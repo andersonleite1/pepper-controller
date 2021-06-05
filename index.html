@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--  load these links without specifying http or https -->
+	<link rel="stylesheet" type="text/css" href="./scripts/jquery-ui.css"/>
+  <link rel="stylesheet" type="text/css" href="./scripts/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="./scripts/font-awesome.min.css"/>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/menu/menu-hambuguer.css">
+  <title>Pepper Controler</title>
+</head>
+<body onload="init()">
+  <div class="container">
+		<!-- ---------------
+			Header
+		---------------- -->
+    <header class="header">
+			<div class="navigation">
+				<nav class="nav">
+					<div class="nav__hamburger">
+						<svg>
+							<use xlink:href="./assets/images/sprite.svg#icon-menu"></use>
+						</svg>
+					</div>
+					<h1 class="title">Pepper Controler</h1>
+				</nav>
+			</div>
+    </header>
+
+    <section>
+      <form role="form" class="form-horizontal" autocomplete="on" onsubmit="connect()">
+				<label for="robotUrlEntry" class="control-label">Robot URL:</label>
+				<div id="robot-url" class="form-group form-group-lg">
+					<div class="">
+						<input type="url" name="url" id="robotUrlEntry" 
+							placeholder="https://"/>
+					</div>
+					<div class="btn">
+						<button type="button" id="connectButton" class="btn btn-primary" style="font-size:25" onclick="connect()">
+							<strong>Connect</strong></button>
+					</div>
+				</div>
+			</form>
+    </section>
+    
+    <!-- -------------------------
+      Buttons Controlers
+    -------------------------- -->
+	<section class="buttons">
+		<div class="container-fluid">
+
+				<div class="icon__move" style="text-align:center">
+					<a class="" id="arrowUp" onclick="arrowUp()" data-toggle="tooltip" data-placement="left" title="Forward">
+						<svg>
+							<use xlink:href="./assets/images/sprite.svg#icon-arrow-up"></use>
+						</svg>
+					</a>
+				</div>
+				<div class="btn-side">
+					<div class="icon__move">
+						<a class=" vcenter"  onclick="arrowLeft() "data-toggle="tooltip" data-placement="left" title="Rotate Left">
+							<svg>
+								<use xlink:href="./assets/images/sprite.svg#icon-arrow-left2"></use>
+							</svg>
+						</a>
+					</div>
+					<!-- ----------------------------------- -->
+					<div  style="text-align:center">
+						<span id='start_button' class="fa-stack fa-4x vcenter"  
+								onclick="startButton(event)" alt="Start">
+								<img id="mic-img" class="mic-img" src="./assets/images/mic.gif" alt="microphone">
+							<i id='mic-bg' ></i>
+							<i id='mic'></i>
+							<i id='mic-slash' style="display:none;"></i>
+						</span>
+						</div>
+						<!-- ----------------------------------- -->
+					<div class="icon__move vcenter">
+						<a class=""  onclick="arrowRight()"data-toggle="tooltip" data-placement="left" title="Rotate Right" >
+							<svg>
+								<use xlink:href="./assets/images/sprite.svg#icon-arrow-right2"></use>
+							</svg>
+						</a>
+					</div>
+				</div>
+
+				<div class="icon__move" style="text-align:center">
+					<a class="" onclick="arrowDown()" data-toggle="tooltip" data-placement="left" title="Back">
+						<svg class="arrow-down">
+							<use xlink:href="./assets/images/sprite.svg#icon-arrow-up"></use>
+						</svg>
+					</a>
+				</div>
+		</div>
+			
+			<div class="btn-speed">
+				<p class="speed-info">Speed</p>
+				<input type="button" value="-" id="btn-speed-decrease">
+				<input type="text" id="speed-value" value="0.5" disabled>
+				<input type="button" value="+" id="btn-speed-increase">
+			</div>
+
+			<div class="btn-center">
+				<div class="col-xs-8 vcenter" style="text-align:center">
+					<button type="button" class="btn btn-danger btn-lg btn-block" style="font-size:25" onclick="stopButton()">
+						<strong>Stop</strong></button>
+				</div>
+			</div>
+
+			<div id="results">
+				Command Log:
+					<div style="height: 100px; overflow: auto;">
+					<table id="commandLog">
+					</table>
+					</div>
+					<br>
+				</div>
+
+			<div id="info" >
+			<p id="info_none"><br><br></p>
+			<p id="info_start">Click on the microphone and begin speaking.</p>
+			<p id="info_speak_now">Speak now.<br><br></p>
+			<p id="info_no_speech">No speech was detected. You may need to adjust your
+				<a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
+					microphone settings</a>.</p>
+			<p id="info_no_microphone" style="display:none">
+				No microphone was found. Check that one is installed and that
+				<a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
+					microphone settings</a> are correct.</p>
+			<p id="info_allow">Click the "Allow" button to enable your microphone. Using the https version helps avoid this.</p>
+			<p id="info_denied">Permission to use microphone was denied.</p>
+			<p id="info_blocked">Permission to use microphone is blocked. To change, go to chrome://settings/contentExceptions#media-stream</p>
+			<p id="info_upgrade">This browser doesn't support the Web Speech API. Use <a href="//www.google.com/chrome">Chrome</a> version 25 or later.</p>
+		</div>
+	</section>
+
+  </div>
+
+  <script type="text/javascript" src="./scripts/jquery.min.js"></script>
+  <script type="text/javascript" src="./scripts/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./scripts/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="./scripts/eventemitter2.min.js"></script>
+	<script type="text/javascript" src="./scripts/roslib.min.js"></script> 
+	<script type="text/javascript" src="./scripts/bootbox.min.js"></script>
+	<script type="text/javascript" src="./scripts/clickButtons.js"></script>
+  <script type="text/javascript" src="./js/main.js"></script>
+  <script type="text/javascript" src="./js/buttons.js"></script>
+</body>
+</html>
