@@ -51,9 +51,15 @@ ul, li {
 }
 
 .menu a {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 2rem;
   color: #FFF;
-  font-size: 1.8rem;
 } 
+
+.menu-settings {
+  display: none;
+}
 
 /*
 ======================

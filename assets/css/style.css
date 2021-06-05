@@ -32,10 +32,10 @@ body {
 }
 
 .title {
-  font-size: 2.2rem;
+  font-family: 'Odibee Sans', cursive;
+  font-weight: 400;
+  font-size: 3.2rem;
 }
-
-
 
 /*</ Header >*/
 
@@ -61,14 +61,23 @@ body {
   margin-left: 1rem;
   margin-top: 1rem;
   padding-right: 2.3rem;
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
 }
 
 #robotUrlEntry {
   height: 3.3rem;
+  padding-left: .9rem;
 }
 
 #connectButton {
   width: 10rem;
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+
+  letter-spacing: .15rem;
 }
 
 /* </ Form > */
@@ -89,6 +98,8 @@ body {
 .icon__move svg {
   width: 6rem;
   height: 6rem;
+
+  cursor: pointer;
 }
 
 .arrow-down {
@@ -104,6 +115,14 @@ body {
   justify-content: center;
   align-items: center;
   display: flex;
+}
+
+.mic-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: lightgray;
+  cursor: pointer;
 }
 
 /* </Buttons Move> */
@@ -139,13 +158,6 @@ body {
 .btn-stop {
   width: 500px;
   margin: 2rem auto;
-}
-
-.mic-img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: lightgray;
 }
 
 #results {

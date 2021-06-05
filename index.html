@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!--  load these links without specifying http or https -->
+  <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="stylesheet" type="text/css" href="./scripts/jquery-ui.css"/>
   <link rel="stylesheet" type="text/css" href="./scripts/bootstrap.min.css"/>
   <link rel="stylesheet" type="text/css" href="./scripts/font-awesome.min.css"/>
@@ -34,10 +36,18 @@
             </svg>
           </div>
           <ul class="menu">
-            <li class="item"><a>Home</a></li>
-            <li class="item"><a>Settings</a></li>
-            <li class="item"><a>Help</a></li>
-            <li class="item"><a>About</a></li>
+            <li class="item"><a href="#home">Home</a></li>
+            <li class="item">
+              <a>Settings <span class="caret"></span></a>
+              <ul class="menu-settings">
+                <li class="sub-item"><a href="#item-1">Item 1</a></li>
+                <li class="sub-item"><a href="#item-2">Item 2</a></li>
+                <li class="sub-item"><a href="#item-3">Item 3</a></li>
+                <li class="sub-item"><a href="#item-4">Item 4</a></li>
+              </ul>
+            </li>
+            <li class="item"><a href="#help">Help</a></li>
+            <li class="item"><a href="#about">About</a></li>
           </ul>
         </nav>
       </div>
@@ -49,7 +59,7 @@
         <div id="robot-url" class="form-group form-group-lg">
           <div class="">
             <input type="url" name="url" id="robotUrlEntry" 
-              placeholder="https://"/>
+              placeholder="https://" disabled />
           </div>
           <div class="btn">
             <button type="button" id="connectButton" class="btn btn-primary" style="font-size:25" onclick="connect()">
@@ -89,8 +99,8 @@
 						<i id='mic'></i>
 						<i id='mic-slash' style="display:none;"></i>
 					</span>
-					</div>
-					<!-- ----------------------------------- -->
+        </div>
+        <!-- ----------------------------------- -->
 				<div class="icon__move vcenter">
 					<a class=""  onclick="arrowRight()"data-toggle="tooltip" data-placement="left" title="Rotate Right" >
 						<svg>
