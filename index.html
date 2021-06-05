@@ -81,7 +81,7 @@
 					</a>
 				</div>
 				<!-- ----------------------------------- -->
-				<div  style="text-align:center">
+				<div class="icon-mic">
 					<span id='start_button' class="fa-stack fa-4x vcenter"  
 							onclick="startButton(event)" alt="Start">
 							<img id="mic-img" class="mic-img" src="./assets/images/mic.gif" alt="microphone">
@@ -110,13 +110,13 @@
 		</div>
 			
 		<div class="btn-speed">
-			<p class="speed-info">Speed</p>
+			<p class="speed-info">Robot Speed</p>
 			<input type="button" value="-" id="btn-speed-decrease">
 			<input type="text" id="speed-value" value="0.5" disabled>
 			<input type="button" value="+" id="btn-speed-increase">
 		</div>
 
-		<div class="btn-center">
+		<div class="btn-center btn-stop">
 			<div class="col-xs-8 vcenter" style="text-align:center">
 				<button type="button" class="btn btn-danger btn-lg btn-block" style="font-size:25" onclick="stopButton()">
 					<strong>Stop</strong></button>
