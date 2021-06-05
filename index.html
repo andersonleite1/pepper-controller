@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="./scripts/jquery-ui.css"/>
   <link rel="stylesheet" type="text/css" href="./scripts/bootstrap.min.css"/>
   <link rel="stylesheet" type="text/css" href="./scripts/font-awesome.min.css"/>
+  <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/menu/menu-hambuguer.css">
   <title>Pepper controller</title>
@@ -19,16 +20,27 @@
 			Header
 		---------------- -->
     <header class="header">
-		<div class="navigation">
-			<nav class="nav">
-				<div class="nav__hamburger">
-					<svg>
-						<use xlink:href="./assets/images/sprite.svg#icon-menu"></use>
-					</svg>
-				</div>
-				<h1 class="title">Pepper robot controller</h1>
-			</nav>
-		</div>
+      <div class="header-top">
+        <div class="image-logo">
+          <img src="./assets/images/pepper-robot.png" alt="Pepper Robot">
+        </div>
+        <h1 class="title">Pepper Robot Controller</h1>
+      </div>
+      <div class="navigation">
+        <nav class="nav">
+          <div class="nav__hamburger">
+            <svg>
+              <use xlink:href="./assets/images/sprite.svg#icon-menu"></use>
+            </svg>
+          </div>
+          <ul class="menu">
+            <li class="item"><a>Home</a></li>
+            <li class="item"><a>Settings</a></li>
+            <li class="item"><a>Help</a></li>
+            <li class="item"><a>About</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <section>
