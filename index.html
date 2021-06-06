@@ -77,15 +77,15 @@
 
 			<div class="icon__move" style="text-align:center">
 				<a class="" id="arrowUp" onclick="arrowUp()" data-toggle="tooltip" data-placement="left" title="Forward">
-					<svg>
+					<svg  class="press">
 						<use xlink:href="./assets/images/sprite.svg#icon-arrow-up"></use>
 					</svg>
 				</a>
 			</div>
 			<div class="btn-side">
 				<div class="icon__move">
-					<a class=" vcenter"  onclick="arrowLeft() "data-toggle="tooltip" data-placement="left" title="Rotate Left">
-						<svg>
+					<a class=" vcenter" id="arrowLeft" onclick="arrowLeft() "data-toggle="tooltip" data-placement="left" title="Rotate Left">
+						<svg  class="press">
 							<use xlink:href="./assets/images/sprite.svg#icon-arrow-left2"></use>
 						</svg>
 					</a>
@@ -102,8 +102,8 @@
         </div>
         <!-- ----------------------------------- -->
 				<div class="icon__move vcenter">
-					<a class=""  onclick="arrowRight()"data-toggle="tooltip" data-placement="left" title="Rotate Right" >
-						<svg>
+					<a class="" id="arrowRight" onclick="arrowRight()"data-toggle="tooltip" data-placement="left" title="Rotate Right" >
+						<svg  class="press">
 							<use xlink:href="./assets/images/sprite.svg#icon-arrow-right2"></use>
 						</svg>
 					</a>
@@ -111,8 +111,8 @@
 			</div>
 
 			<div class="icon__move" style="text-align:center">
-				<a class="" onclick="arrowDown()" data-toggle="tooltip" data-placement="left" title="Back">
-					<svg class="arrow-down">
+				<a class="" id="arrowDown" onclick="arrowDown()" data-toggle="tooltip" data-placement="left" title="Back">
+					<svg class="arrow-down press">
 						<use xlink:href="./assets/images/sprite.svg#icon-arrow-up"></use>
 					</svg>
 				</a>
@@ -170,6 +170,7 @@
 	<script type="text/javascript" src="./scripts/bootbox.min.js"></script>
 	<script type="text/javascript" src="./scripts/clickButtons.js"></script>
 	<script type="text/javascript" src="./js/main.js"></script>
-	<script type="text/javascript" src="./js/buttons.js"></script>
+	<script type="text/javascript" src="./js/moveRobot.js"></script>
+	<!-- <script type="text/javascript" src="./js/buttons.js"></script> -->
 </body>
 </html>

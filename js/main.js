@@ -1,4 +1,4 @@
-  var connected=false;
+var connected = false;
 var recognizing = false;
 var recognition;
 var total_recognized = 0;
@@ -9,8 +9,8 @@ var topicName = 'pepper/cmd_vel';     					    // topic name for the UR robots
 //	var topicName = '/cmd_vel_mux/input/navi'; // topic name for the Stage simulator
 //	var topicName = '/turtle1/cmd_vel'; 	    // this allows testing with turtlesim
 var useSimulator = false;						       	// whether simulator is used
-var speedFactor = 1.0;					            // multiplies or divides speed to go faster or slower
-var linearSpeed = 0.5, angularSpeed = 1.0; // initial speed
+var speedFactor = 5.0;					            // multiplies or divides speed to go faster or slower
+var linearSpeed = 0.5, angularSpeed = 0.5; // initial speed
 var linearRepeat = 1, angularRepeat = 1;	// number of times to repeat command
 var repeatInterval = 500;					       // wait time between repeats, in ms
 var stopMotion = true;
@@ -50,27 +50,18 @@ function setMicInactive() {
 	var micImg = document.getElementById("mic-img");
 	micImg.src = "./assets/images/mic.gif";
 	micImg.style.backgroundColor = "lightgray";
-
-	//micBg.style.color = "Gray";
-	//micSlash.style.display = "none";
 }
 
 function setMicActive() {
 	var micImg = document.getElementById("mic-img");
 	micImg.src = "./assets/images/mic-animate.gif";
 	micImg.style.backgroundColor = "#00cc00";
-
-	//micBg.style.color="#00cc00";    // green
-	//micSlash.style.display = "none";
 }
 
 function setMicOff() {
 	var micImg = document.getElementById("mic-img");
 	micImg.src = "./assets/images/mic.gif";
 	micImg.style.backgroundColor = "lightgray";
-
-	//micBg.style.color = "Gray";
-	//micSlash.style.display = "inline";
 }
 
 function addLog(text, textColor) {
@@ -197,12 +188,12 @@ function connect() {
 			console.log('Connection to websocket server closed.');
 		}
 	});
-
 }	
 	
 /**  ******************************************************
  *               Comandos de voz
  ****************************************************** */
+/*
 function startRecognition () {
 
 	if (!('webkitSpeechRecognition' in window)) {
@@ -535,31 +526,8 @@ function startRecognition () {
 	}   
 }		// end of function startRecpgnition
 		
-         
-/*------------------------------------------	
-var teleop = new KEYBOARDTELEOP.Teleop({
-		ros: ros,
-		topic: '/base_controller/command'
-});
+*/        
 
-// Create a UI slider using JQuery UI.
-$('#speed-slider').slider({
-		range: 'min',
-		min: 0,
-		max: 100,
-		value: 90,
-		slide: function(event, ui) {
-			// Change the speed label.
-			$('#speed-label').html('Speed: ' + ui.value + '%');
-			// Scale the speed.
-			teleop.scale = (ui.value / 100.0);
-		}
-});
-// Set the initial speed .
-$('#speed-label').html('Speed: ' + ($('#speed-slider').slider('value')) + '%');
-teleop.scale = ($('#speed-slider').slider('value') / 100.0);
-}
--------------------------------------------------------------------*/
 
 function showInfo(s) {
 	if (s) {
@@ -611,19 +579,6 @@ function restartReco() {
 	setMicActive ();
 }
 
-//        var current_style;
-//
-//       function showButtons(style) {
-//           if (style == current_style) {
-//               return;
-//           }
-//           current_style = style;
-//           copy_button.style.display = style;
-//           email_button.style.display = style;
-//           copy_info.style.display = 'none';
-//           email_info.style.display = 'none';
-//       }
-
 function sendTwistMessage(xMove, zMove) {
 	console.log ("sending twist x:" + xMove + " z:" + zMove);
 // linear x and y movement and angular z movement
@@ -650,7 +605,7 @@ function sendTwistMessage(xMove, zMove) {
 	var reps = Math.max (1, Math.abs (twist.linear.x) > 0 ? linearRepeat : (Math.abs (twist.angular.z) > 0 ? angularRepeat : 1));
 	if (typeof cmdVel.ros != "undefined") {			// this would be if we are not connected
 		stopMotion = false;
-		publishCmd ();
+		publishCmd();
 	}
 
 	function publishCmd() {
@@ -670,12 +625,12 @@ function arrowUp () {
 }
 function arrowUpRight () {
 	moveRobotFromPose (0, -angularSpeed);
-	sendTwistMessage (linearSpeed, -30.0);
+	sendTwistMessage (linearSpeed, -0.05);
 	addLog ("forward button");
 }
 function arrowUpLeft () {
 	moveRobotFromPose (0, angularSpeed);
-	sendTwistMessage (linearSpeed, 30.0);
+	sendTwistMessage (linearSpeed, 0.05);
 	addLog ("forward button");
 }
 function arrowDown () {
@@ -684,17 +639,17 @@ function arrowDown () {
 }
 function arrowRight () {
 	moveRobotFromPose (0, -angularSpeed);
-	sendTwistMessage (0, -30.0); // linearSpeed, angle
+  sendTwistMessage (0, 0.05);
 	addLog ("rotate right button");
 }
 function arrowLeft () {
 	moveRobotFromPose (0, angularSpeed);
-	sendTwistMessage (0, 30.0); // linearSpeed, angle
+	sendTwistMessage (0, -0.05); // linearSpeed, angle
 	addLog ("rotate left button");
 }
 function stopButton () {
 	stopMotion = true;
-	cancelRobotMove ();
+	cancelRobotMove();
 	addLog ("stop button");
 	//sendTwistMessage (0.0, 0.0);
 }

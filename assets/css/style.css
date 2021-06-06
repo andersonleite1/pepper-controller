@@ -102,6 +102,11 @@ body {
   cursor: pointer;
 }
 
+.icon__move .press.on {
+  background: greenyellow;
+  border-radius: 15%;
+}
+
 .arrow-down {
   transform: rotate(180deg);
 }
