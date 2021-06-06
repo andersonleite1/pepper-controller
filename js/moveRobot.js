@@ -6,14 +6,10 @@ function keyPressed(evt){
 
 document.onkeypress = function(evt) {
   var str = keyPressed(evt);
-  
-  // if(str == 'f')
-  //   alert("Apertou o 'w', chamando uma função...");
 
     switch (str) {
       case 'w':
         arrowUp();
-        // alert("Apertou o 'w', chamando uma função...");
         break;
       case 'q':
         arrowUpLeft();
@@ -23,15 +19,12 @@ document.onkeypress = function(evt) {
         break;
       case 'd':
         arrowRight();
-        // alert("Apertou o 'd', chamando uma função...");
         break;
       case 's':
         arrowDown();
-        // alert("Apertou o 's', chamando uma função...");
         break;
       case 'a':
         arrowLeft();
-        // alert("Apertou o 'a', chamando uma função...");
         break;
       default:
         console.log(str);
@@ -39,35 +32,36 @@ document.onkeypress = function(evt) {
 };
 
 var intervalId = 0;
-
 $(document).on('mouseup', release);
 function release() {
   if(intervalId != 0) {
-      clearInterval(intervalId); // Limpa o intervalo registrado anteriormente
-      intervalId = 0;
+    clearInterval(intervalId); // Limpa o intervalo registrado anteriormente
+    intervalId = 0;
+
+    var svgs = document.querySelectorAll("svg");
+    for(var i = 0; i < svgs.length; i++) {
+      if(svgs[i].classList.contains("on")) svgs[i].classList.remove("on")
+    }
   }
 }
       
 $('#arrowUp').on('mousedown', function() {
-  $( "'#arrowUp .press" ).addClass( "on" );
+  this.children[0].classList.add("on");
   intervalId = setInterval(arrowUp, 500); 
 });
 
 $('#arrowRight').on('mousedown', function() {
-  $( ".press" ).addClass( "on" );
+  this.children[0].classList.add("on");
   intervalId = setInterval(arrowRight, 500); 
 });
 
 $('#arrowDown').on('mousedown', function() {
-  $( ".press" ).addClass( "on" );
+  this.children[0].classList.add("on");
   intervalId = setInterval(arrowDown, 500); 
 });
 
 $('#arrowLeft').on('mousedown', function() {
-  $( ".press" ).addClass( "on" );
+  this.children[0].classList.add("on");
   intervalId = setInterval(arrowLeft, 500); 
 });
-      
-
-  
   

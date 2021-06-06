@@ -102,8 +102,8 @@ body {
   cursor: pointer;
 }
 
-.icon__move .press.on {
-  background: greenyellow;
+.press.on {
+  background-color: #7AE310;
   border-radius: 15%;
 }
 
