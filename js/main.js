@@ -193,7 +193,7 @@ function connect() {
 /**  ******************************************************
  *               Comandos de voz
  ****************************************************** */
-/*
+
 function startRecognition () {
 
 	if (!('webkitSpeechRecognition' in window)) {
@@ -310,26 +310,24 @@ function startRecognition () {
 						testCandidate: switch (words [0]){
 							case 'forward':
 							case 'foreword':
-							case 'keep going':
-							case 'ahead':
-							case 'straight':
+							case 'race':
+							case 'run':
+							case 'front':
 							case 'go':
 								if (words.length == 1) {	
-									//alert('Falaram GO if 1');		
 									x = linearSpeed;
 									// ---------- loop acao ir para frente
-									for(var i=0; i < 1500; i++) {
-										sendTwistMessage (x, z);
+									for(var i=0; i < 1000; i++) {
+										//sendTwistMessage (x, z);
+										arrowUp();
 									}
 									// ----------
-								//	x = linearSpeed;
-									sendTwistMessage (x, z);
 								} else if (words.length == 3) {
-									alert('Falaram GO  if 2');	
+									//alert(words);	
 									dist = getDistance (words[1], words[2]);			// accept meters, translate feet --> meters
 									commandFound = (dist > 0);
 									if (dist > 0) {
-										alert('Falaram GO  if 3');	
+										//alert('Falaram GO  if 3');	
 										moveRobotFromPose (dist, 0);		// move dist meters // 0
 										moveRobotFromPose (dist, 0);  // 0
 									}
@@ -337,24 +335,52 @@ function startRecognition () {
 									commandFound = false;
 								}
 								break testCandidate;
+							case 'right':
+							case 'go right':
+              case 'turn right':
+								if (words.length == 1) {
+									//alert("Ir para direita");		
+									x = linearSpeed;
+									// ---------- loop acao ir para direita
+									for(var i=0; i < 100; i++) {
+										arrowRight();
+									}
+									// ----------
+								}
+								break;
+							case 'left':
+              case 'go left':
+              case 'turn left':
+								if (words.length == 1) {
+									//alert("Ir para esquerda");		
+									x = linearSpeed;
+									// ---------- loop acao ir para esquerda
+									for(var i=0; i < 100; i++) {
+										arrowLeft();
+									}
+									// ----------
+								}
+								break;
 							case "reverse":
-							case "backward":
+							case "return":
 							case "back":
+							case "go return":
+							case "go back":
 								if (words.length == 1) {			
 									x = -linearSpeed;
 										// ---------- loop acao ir para tras
 										for(var i=0; i < 500; i++) {
-											sendTwistMessage (x, z);
+											arrowDown();
 										}
 										// ----------
-									sendTwistMessage (x, z);
 								} else if (words.length == 3) {
 									dist = -getDistance (words[1], words[2]);			// accept meters, feet --> meter
 									commandFound = (dist < 0);
 									if (dist < 0) {
 										moveRobotFromPose (dist, 0);		// move dist meters 
 									}
-								} else {commandFound = false;
+								} else {
+									commandFound = false;
 								}
 								break testCandidate;
 							case "rotate":
@@ -369,33 +395,8 @@ function startRecognition () {
 								if (dist <= 0) {
 									commandFound = false;
 									break testCandidate;
-								} 
-								rotswitch: switch (words [1]) {
-									case "right":
-										//z = -dist;
-											// ---------- loop acao virar direita
-									for(var i=0; i < 1500; i++) {
-										moveRobotFromPose (0, -dist);	
-									}
-									// ----------
-										moveRobotFromPose (0, -dist);	
-										break rotswitch;
-									case "left":
-											// --------- loop acao virar esquerda
-										for(var i=0; i < 1500; i++) {
-											moveRobotFromPose (0, dist);
-										}
-										// ---------
-										moveRobotFromPose (0, dist);
-										//z = dist;
-										break rotswitch;
-									default:
-										commandFound = false;
-										break testCandidate;
 								}
-								// sendTwistMessage (x, z);
 								break testCandidate;
-								
 							case "turn":
 								turnswitch: switch (words [1]) {
 									case "right":
@@ -476,7 +477,6 @@ function startRecognition () {
 										}
 										}
 									});
-
 								} else if (words.length > 2 && words[0] == "go" && words[1] == "to") {		// go to waypoint
 									commandFound = true;
 									goToWaypoint (words.slice(2).join(" "));
@@ -521,13 +521,9 @@ function startRecognition () {
 					addLog (topCandidate.toLowerCase() + " is not recognized as a command", "red");
 				}
 			} 
-			
 		}	// end of onresult
 	}   
-}		// end of function startRecpgnition
-		
-*/        
-
+}		// end of function startRecpgnition       
 
 function showInfo(s) {
 	if (s) {
@@ -545,7 +541,7 @@ function showInfo(s) {
 function startButton(event) {
 	console.log('startButton event');
 
-	if (recognizing) {
+	if(recognizing) {
 		recognition.stop();
 		console.log('recognition stopped');
 		noRestartReco = true;
@@ -555,7 +551,7 @@ function startButton(event) {
 	}
 
 	if (!(recognition || 0)) {
-		startRecognition ();
+		startRecognition();
 	}
 
 	if (recognition || 0) {
