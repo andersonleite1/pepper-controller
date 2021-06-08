@@ -34,7 +34,9 @@ body {
 .title {
   font-family: 'Odibee Sans', cursive;
   font-weight: 400;
-  font-size: 3.2rem;
+  font-size: 2.2rem;
+  margin: 0;
+  padding-top: 1rem;
 }
 
 /*</ Header >*/
@@ -60,14 +62,14 @@ body {
 .control-label {
   margin-left: 1rem;
   margin-top: 1rem;
-  padding-right: 2.3rem;
+  padding-right: 1rem;
 
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
 }
 
 #robotUrlEntry {
-  height: 3.3rem;
+  height: 2.2rem;
   padding-left: .9rem;
 }
 
@@ -80,6 +82,10 @@ body {
   letter-spacing: .15rem;
 }
 
+form .btn {
+  padding-left: 0.2rem;
+}
+
 /* </ Form > */
 
 
@@ -87,7 +93,7 @@ body {
 
 .icon-mic {
   text-align:center;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 }
 
 .container-fluid {
@@ -96,8 +102,8 @@ body {
 }
 
 .icon__move svg {
-  width: 6rem;
-  height: 6rem;
+  width: 4.5rem;
+  height: 4.5rem;
 
   cursor: pointer;
 }
@@ -139,7 +145,7 @@ body {
 
 .speed-info{
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-weight: 600;
   font-style: oblique;
   margin-bottom: 0.1rem;
@@ -147,22 +153,24 @@ body {
 
 #btn-speed-increase,
 #btn-speed-decrease {
-  width: 4rem;
-  font-size: 2rem;
+  width: 3.5rem;
+  font-size: 1.5rem;
   font-weight: 800;
 }
 
 #speed-value {
   width: 10rem;
-  height: 3.5rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   text-align: center;
 }
 
 .btn-stop {
-  width: 500px;
   margin: 2rem auto;
+}
+
+.btn-stop button {
+  width: 270px;
 }
 
 #results {
