@@ -23,7 +23,7 @@ var mic, micSlash, micBg;
 		
 
 /*********************************
- * Velocidade da cadeira
+ *          Robot Speed
  */
 var btnSpeedIncrease = document.getElementById('btn-speed-increase');
 var btnSpeedDecrease = document.getElementById('btn-speed-decrease');
@@ -129,11 +129,11 @@ function say (words) {
 }
 
 /**
- * @returns Realiza a conexão entre a aplicação e o ROS
+ * @returns Makes the connection between the application and the ROS
  */
 function connect() {
 	var connectButton;
-	if (connected) {			// disconnect
+	if (connected) {	// disconnect
 		ros.close();
 	} else {
 		robotUrl = document.getElementById("robotUrlEntry").value.trim();
@@ -151,7 +151,7 @@ function connect() {
 					"and end with a port number, like ':9090'.");
 				return;
 		}
-		ros = new ROSLIB.Ros({						// Connecting to ROS.
+		ros = new ROSLIB.Ros({  // Connecting to ROS.
 			url: robotUrl 							
 		});
 	}	
@@ -162,7 +162,7 @@ function connect() {
 		localStorage.robotUrl = robotUrl;
 		connectButton = document.getElementById("connectButton");
 		connectButton.innerHTML = "Disconnect";
-		connectButton.style.background="#00cc00";    		// green
+		connectButton.style.background="#00cc00"; // green
 		say ('connected');
 		connected = true;
 	});
@@ -191,7 +191,7 @@ function connect() {
 }	
 	
 /**  ******************************************************
- *               Comandos de voz
+ *               Voice Commands
  ****************************************************** */
 
 function startRecognition () {
@@ -324,11 +324,11 @@ function startRecognition () {
 									// ----------
 								} else if (words.length == 3) {
 									//alert(words);	
-									dist = getDistance (words[1], words[2]);			// accept meters, translate feet --> meters
-									commandFound = (dist > 0);
-									if (dist > 0) {
+									dist = getDistance (words[1], words[2]);	// accept meters, translate feet --> meters
+									commandFound = (dist > 0); 
+									if (dist > 0) {                     // move dist meters
 										//alert('Falaram GO  if 3');	
-										moveRobotFromPose (dist, 0);		// move dist meters // 0
+										moveRobotFromPose (dist, 0);   // 0
 										moveRobotFromPose (dist, 0);  // 0
 									}
 								} else {
@@ -337,7 +337,7 @@ function startRecognition () {
 								break testCandidate;
 							case 'right':
 							case 'go right':
-              case 'turn right':
+              				case 'turn right':
 								if (words.length == 1) {
 									//alert("Ir para direita");		
 									x = linearSpeed;
@@ -349,8 +349,8 @@ function startRecognition () {
 								}
 								break;
 							case 'left':
-              case 'go left':
-              case 'turn left':
+              				case 'go left':
+              				case 'turn left':
 								if (words.length == 1) {
 									//alert("Ir para esquerda");		
 									x = linearSpeed;
@@ -450,7 +450,7 @@ function startRecognition () {
 								break testCandidate;
 						}
 
-					// it may yet be a waypoint command
+						// it may yet be a waypoint command
 						if (!commandFound) {
 							if (words && words.length > 1) {
 								if (words [0] == "waypoint") {			// it is a waypoint command, to set a waypoint
@@ -492,32 +492,30 @@ function startRecognition () {
 								}
 							}
 						}
-					allResults += "/" + candidate;
-					if (commandFound === true) {
-						altNumber = i;
-						break testAllCandidates;
-					}
-				}		// end of for loop
+						allResults += "/" + candidate;
+						if (commandFound === true) {
+							altNumber = i;
+							break testAllCandidates;
+						}
+					}		// end of for loop
 	
-			console.log (allResults);
-			if (showUnrecognized) {addLog (allResults);}
-			if (commandFound) {								// publish the command
-				commands = candidate + " (alt. #" + (altNumber + 1) + " of " + results.length + ") " + commands;
-				commands = commands.slice(0, 50);
-				//final_span.innerHTML = "Commands ["+ total_recognized + "]: "  + commands;
-				//cmd_err_span.innerHTML = "";
-				total_recognized++;
-				addLog (commands);
-				
-			// Research: Keep count of how often we used the first result
-				if (altNumber == 0) {
-					localStorage.firstResultOK = Number(localStorage.firstResultOK) + 1;
-				} else {
-					localStorage.otherResultOK = Number(localStorage.otherResultOK) + 1;
-				} 
-				console.log ("First answer recognition rate is " + ((100 * Number(localStorage.firstResultOK)) /
-					(Number(localStorage.firstResultOK) + Number(localStorage.otherResultOK))).toFixed(2) + "%");
-			} else if (topCandidate != "") {
+				console.log (allResults);
+				if (showUnrecognized) {addLog (allResults);}
+				if (commandFound) {								// publish the command
+					commands = candidate + " (alt. #" + (altNumber + 1) + " of " + results.length + ") " + commands;
+					commands = commands.slice(0, 50);
+					total_recognized++;
+					addLog (commands);
+					
+					// Research: Keep count of how often we used the first result
+					if (altNumber == 0) {
+						localStorage.firstResultOK = Number(localStorage.firstResultOK) + 1;
+					} else {
+						localStorage.otherResultOK = Number(localStorage.otherResultOK) + 1;
+					} 
+					console.log ("First answer recognition rate is " + ((100 * Number(localStorage.firstResultOK)) /
+						(Number(localStorage.firstResultOK) + Number(localStorage.otherResultOK))).toFixed(2) + "%");
+				} else if (topCandidate != "") {
 					addLog (topCandidate.toLowerCase() + " is not recognized as a command", "red");
 				}
 			} 
@@ -558,8 +556,6 @@ function startButton(event) {
 		recognition.lang = "en-US"; // Idioma da voz  // en-US
 		recognition.start();
 		noRestartReco = false;
-		//final_span.innerHTML = '';
-		//cmd_err_span.innerHTML = '';
 		setMicOff ()
 		showInfo('info_allow');
 		// showButtons('none');
@@ -577,7 +573,7 @@ function restartReco() {
 
 function sendTwistMessage(xMove, zMove) {
 	console.log ("sending twist x:" + xMove + " z:" + zMove);
-// linear x and y movement and angular z movement
+	// linear x and y movement and angular z movement
 	
 	var cmdVel = new ROSLIB.Topic({
 		ros : ros,
@@ -809,40 +805,18 @@ function getPose(callbackPosition) {
 		fixedFrame : 'map',
 		angularThres : 0.01,	// threshold--smaller movements won't be reported
 		transThres : 0.01
-	});
-	var msgString;
+		});
+		var msgString;
 
-	// We subscribe to the TF between the fixed frame ('map') and the 'base_link' frame. 
-	// Any transforms between these two frames greater than the specified threshold will 
-	// trigger the callback. The message returned is a ROS TF message.
-	
-	tfClient.subscribe('base_link', function(message) {
-		tfClient.unsubscribe('base_link');  			// we only need this once
-		msgString = JSON.stringify(message);
-		console.log ("tfClient pose in " + tfClient.fixedFrame + ": " + msgString);
-		callbackPosition (msgString);		
+		// We subscribe to the TF between the fixed frame ('map') and the 'base_link' frame. 
+		// Any transforms between these two frames greater than the specified threshold will 
+		// trigger the callback. The message returned is a ROS TF message.
 		
-		/* 		
-				// Formats the pose.
-				// var now = new Date();
-
-				var translation = 'x: ' + message.translation.x
-					+ ', y: ' + message.translation.y
-					+ ', z: 0.0';
-				var rotation = 'x: ' + message.rotation.x
-					+ ', y: ' + message.rotation.y
-					+ ', z: ' + message.rotation.z
-					+ ', w: ' + message.rotation.w;  >/
-				
-				console.log ('Received message on ' + tfClient.name + ': #' + message.header.seq);
-				console.log (msgstring);
-		*/		
-		/*     	format for insertion into a table
-					$('#poses > tbody > tr:first').after('<tr>'
-						+ '<td>' + now.toLocaleTimeString() + '</td>'
-						+ '<td>' + position + '</td>'
-						+ '<td>' + orientation + '</td>');  
-		*/
+		tfClient.subscribe('base_link', function(message) {
+			tfClient.unsubscribe('base_link');  			// we only need this once
+			msgString = JSON.stringify(message);
+			console.log ("tfClient pose in " + tfClient.fixedFrame + ": " + msgString);
+			callbackPosition (msgString);		
 		});
 	}
 }
@@ -938,13 +912,13 @@ function moveRobotFromPose (distance, angle) {
 			}
 			// moveClient.cancel ();  this does not stop the damn messages
 		});
-				/********		This never seems to be called!
-						goal.on('result', function(result) {
-							console.log ('Move robot result: ' + JSON.stringify(result));
-							console.log ("Result: " + JSON.stringify (result));
-							moveClient.cancel ();
-						});
-				******************/
+			/********	This never seems to be called!
+				goal.on('result', function(result) {
+					console.log ('Move robot result: ' + JSON.stringify(result));
+					console.log ("Result: " + JSON.stringify (result));
+					moveClient.cancel ();
+				});
+			******************/
 		goal.send();
 		console.log ('moveRobotFromPose goal sent');
 	}
@@ -973,48 +947,7 @@ function paramdump () {
 		data: 'dump waypoints'
 	});
 	dumpTopic.publish (pdumpMsg);
-}
-
-/*		
-	function getOdometry (callbackPosition) {	
-      // ----------------------------------------------------------------------
-      // Subscribing to the robot's Pose-- this is one method
-      // ----------------------------------------------------------------------
-      // The ROSLIB.Topic handles subscribing and publishing a ROS topic. This
-      // topic interacts with the odom topic, published by the robot.
-      var odomTopic = new ROSLIB.Topic({
-        ros         : ros,
-        name        : 'odom',
-        messageType : 'nav_msgs/Odometry'
-      });
-      // Subscribes to the robot's odom topic, which includes the pose. When rosbridge receives the pose
-      // message from ROS, it forwards the message to roslibjs, which calls this callback.
-      odomTopic.subscribe(function(message) {
-        // Formats the pose.
-        // var now = new Date();
-		//TODO  this is where we should place the robot command to move to the desired location.
-        var position = 'x: ' + message.pose.pose.position.x
-          + ', y: ' + message.pose.pose.position.y
-          + ', z: 0.0';
-        var orientation = 'x: ' + message.pose.pose.orientation.x
-          + ', y: ' + message.pose.pose.orientation.y
-          + ', z: ' + message.pose.pose.orientation.z
-          + ', w: ' + message.pose.pose.orientation.w;
-		  
-		odomTopic.unsubscribe();  
-		console.log ('Received message on ' + odomTopic.name + ': #' + message.header.seq);
-		console.log (position);
-		console.log (orientation);
-		callbackPosition ();
-		//        $('#poses > tbody > tr:first').after('<tr>'
-		//          + '<td>' + now.toLocaleTimeString() + '</td>'
-		//         + '<td>' + position + '</td>'
-		//          + '<td>' + orientation + '</td>'); 
-		  
-		});
-	}
-
-*/	
+}	
 		
 function mute () {
 	if (muted === true) {
