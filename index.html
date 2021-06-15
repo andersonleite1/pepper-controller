@@ -8,10 +8,7 @@
   <!--  load these links without specifying http or https -->
   <link href="https://fonts.googleapis.com/css2?family=Odibee+Sans&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-	<!-- <link rel="stylesheet" type="text/css" href="./scripts/jquery-ui.css"/> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-  <!-- <link rel="stylesheet" type="text/css" href="./scripts/bootstrap.min.css"/> -->
-  <!-- <link rel="stylesheet" type="text/css" href="./scripts/font-awesome.min.css"/> -->
   <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/menu/menu-hambuguer.css">
@@ -44,9 +41,9 @@
                   Settings
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><a class="dropdown-item" href="./pepper-body.html">Pepper Body</a></li>
+                  <li><a class="dropdown-item" href="#">Item 2</a></li>
+                  <li><a class="dropdown-item" href="#">Item 3</a></li>
                 </ul>
               </div>
             </li>
@@ -76,107 +73,101 @@
     <!-- -------------------------
       Buttons Controlers
     -------------------------- -->
-	<section class="buttons">
-		<div class="container-fluid">
+    <section class="buttons">
+      <div class="container-fluid">
 
-			<div class="icon__move" style="text-align:center">
-				<a class="" id="arrowUp" onclick="arrowUp()" data-toggle="tooltip" data-placement="left" title="Forward">
-					<svg  class="press">
-						<use xlink:href="./assets/images/sprite.svg#icon-arrow-up"></use>
-					</svg>
-				</a>
-			</div>
-			<div class="btn-side">
-				<div class="icon__move">
-					<a class=" vcenter" id="arrowLeft" onclick="arrowLeft() "data-toggle="tooltip" data-placement="left" title="Rotate Left">
-						<svg  class="press">
-							<use xlink:href="./assets/images/sprite.svg#icon-arrow-left2"></use>
-						</svg>
-					</a>
-				</div>
-				<!-- ----------------------------------- -->
-				<div class="icon-mic">
-					<span id='start_button' class="fa-stack fa-4x vcenter"  
-							onclick="startButton(event)" alt="Start">
-							<img id="mic-img" class="mic-img" src="./assets/images/mic.gif" alt="microphone">
-						<i id='mic-bg' ></i>
-						<i id='mic'></i>
-						<i id='mic-slash' style="display:none;"></i>
-					</span>
+        <div class="icon__move" style="text-align:center">
+          <a class="" id="arrowUp" onclick="arrowUp()" data-toggle="tooltip" data-placement="left" title="Forward">
+            <svg  class="press">
+              <use xlink:href="./assets/images/sprite.svg#icon-arrow-up"></use>
+            </svg>
+          </a>
         </div>
-        <!-- ----------------------------------- -->
-				<div class="icon__move vcenter">
-					<a class="" id="arrowRight" onclick="arrowRight()"data-toggle="tooltip" data-placement="left" title="Rotate Right" >
-						<svg  class="press">
-							<use xlink:href="./assets/images/sprite.svg#icon-arrow-right2"></use>
-						</svg>
-					</a>
-				</div>
-			</div>
+        <div class="btn-side">
+          <div class="icon__move">
+            <a class=" vcenter" id="arrowLeft" onclick="arrowLeft() "data-toggle="tooltip" data-placement="left" title="Rotate Left">
+              <svg  class="press">
+                <use xlink:href="./assets/images/sprite.svg#icon-arrow-left2"></use>
+              </svg>
+            </a>
+          </div>
+          <!-- -------------microphone----------- -->
+          <div class="icon-mic">
+            <span id='start_button' class="fa-stack fa-4x vcenter"  
+                onclick="startButton(event)" alt="Start">
+                <img id="mic-img" class="mic-img" src="./assets/images/mic.gif" alt="microphone">
+              <i id='mic-bg' ></i>
+              <i id='mic'></i>
+              <i id='mic-slash' style="display:none;"></i>
+            </span>
+          </div>
+          <!-- ----------------------------------- -->
+          <div class="icon__move vcenter">
+            <a class="" id="arrowRight" onclick="arrowRight()"data-toggle="tooltip" data-placement="left" title="Rotate Right" >
+              <svg  class="press">
+                <use xlink:href="./assets/images/sprite.svg#icon-arrow-right2"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
 
-			<div class="icon__move" style="text-align:center">
-				<a class="" id="arrowDown" onclick="arrowDown()" data-toggle="tooltip" data-placement="left" title="Back">
-					<svg class="arrow-down press">
-						<use xlink:href="./assets/images/sprite.svg#icon-arrow-up"></use>
-					</svg>
-				</a>
-			</div>
-		</div>
-			
-		<div class="btn-speed">
-			<p class="speed-info">Robot Speed</p>
-			<input type="button" value="-" id="btn-speed-decrease">
-			<input type="text" id="speed-value" value="0.5" disabled>
-			<input type="button" value="+" id="btn-speed-increase">
-		</div>
+        <div class="icon__move" style="text-align:center">
+          <a class="" id="arrowDown" onclick="arrowDown()" data-toggle="tooltip" data-placement="left" title="Back">
+            <svg class="arrow-down press">
+              <use xlink:href="./assets/images/sprite.svg#icon-arrow-up"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+        
+      <div class="btn-speed">
+        <p class="speed-info">Robot Speed</p>
+        <input type="button" value="-" id="btn-speed-decrease">
+        <input type="text" id="speed-value" value="0.5" disabled>
+        <input type="button" value="+" id="btn-speed-increase">
+      </div>
 
-		<div class="btn-center btn-stop">
-			<div class="col-xs-8 vcenter" style="text-align:center">
-				<button type="button" class="btn btn-danger btn-lg btn-block" style="font-size:25" onclick="stopButton()">
-					<strong>Stop</strong></button>
-			</div>
-		</div>
+      <div class="btn-center btn-stop">
+        <div class="col-xs-8 vcenter" style="text-align:center">
+          <button type="button" class="btn btn-danger btn-lg btn-block" style="font-size:25" onclick="stopButton()">
+            <strong>Stop</strong></button>
+        </div>
+      </div>
 
-		<div id="results">
-			Command Log:
-			<div style="height: 100px; overflow: auto;">
-			<table id="commandLog">
-			</table>
-			</div>
-			<br>
-		</div>
+      <div id="results">
+        Command Log:
+        <div style="height: 100px; overflow: auto;">
+        <table id="commandLog">
+        </table>
+        </div>
+        <br>
+      </div>
 
-		<div id="info" >
-			<p id="info_none"><br><br></p>
-			<p id="info_start">Click on the microphone and begin speaking.</p>
-			<p id="info_speak_now">Speak now.<br><br></p>
-			<p id="info_no_speech">No speech was detected. You may need to adjust your
-				<a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
-					microphone settings</a>.</p>
-			<p id="info_no_microphone" style="display:none">
-				No microphone was found. Check that one is installed and that
-				<a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
-					microphone settings</a> are correct.</p>
-			<p id="info_allow">Click the "Allow" button to enable your microphone. Using the https version helps avoid this.</p>
-			<p id="info_denied">Permission to use microphone was denied.</p>
-			<p id="info_blocked">Permission to use microphone is blocked. To change, go to chrome://settings/contentExceptions#media-stream</p>
-			<p id="info_upgrade">This browser doesn't support the Web Speech API. Use <a href="//www.google.com/chrome">Chrome</a> version 25 or later.</p>
-		</div>
-	</section>
+      <div id="info" >
+        <p id="info_none"><br><br></p>
+        <p id="info_start">Click on the microphone and begin speaking.</p>
+        <p id="info_speak_now">Speak now.<br><br></p>
+        <p id="info_no_speech">No speech was detected. You may need to adjust your
+          <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
+            microphone settings</a>.</p>
+        <p id="info_no_microphone" style="display:none">
+          No microphone was found. Check that one is installed and that
+          <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
+            microphone settings</a> are correct.</p>
+        <p id="info_allow">Click the "Allow" button to enable your microphone. Using the https version helps avoid this.</p>
+        <p id="info_denied">Permission to use microphone was denied.</p>
+        <p id="info_blocked">Permission to use microphone is blocked. To change, go to chrome://settings/contentExceptions#media-stream</p>
+        <p id="info_upgrade">This browser doesn't support the Web Speech API. Use <a href="//www.google.com/chrome">Chrome</a> version 25 or later.</p>
+      </div>
+    </section>
 
-  </div>
-
-	<!-- <script type="text/javascript" src="./scripts/jquery.min.js"></script> -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-	<!-- <script type="text/javascript" src="./scripts/bootstrap.min.js"></script> -->
-	<!-- <script type="text/javascript" src="./scripts/jquery-ui.min.js"></script> -->
 	<script type="text/javascript" src="./scripts/eventemitter2.min.js"></script>
 	<script type="text/javascript" src="./scripts/bootbox.min.js"></script>
 	<script type="text/javascript" src="./scripts/roslib.min.js"></script> 
 	<script type="text/javascript" src="./scripts/clickButtons.js"></script>
 	<script type="text/javascript" src="./js/main.js"></script>
 	<script type="text/javascript" src="./js/moveRobot.js"></script>
-	<!-- <script type="text/javascript" src="./js/buttons.js"></script> -->
 </body>
 </html>
