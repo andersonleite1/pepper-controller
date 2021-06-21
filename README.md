@@ -78,7 +78,7 @@ Each time you want to start using Pepper Simulation Control:
 
 - Launch the tf2_web_republisher
   ```bash
-  roslaunch rosbridge_server rosbridge_websocket.launch
+  rosrun tf2_web_republisher tf2_web_republisher
   ```
 
 - In the Chrome browser on your laptop or Android phone, load the page http://127.0.0.1/pepper-controller/, using http with the robot url. The first time, the browser may respond with an error message, which essentially asks you to OK, relying on the self-signed certificate.
