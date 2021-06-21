@@ -616,12 +616,12 @@ function arrowUp () {
 	addLog ("forward button");
 }
 function arrowUpRight () {
-	moveRobotFromPose (0, -angularSpeed);
+	moveRobotFromPose (0, angularSpeed);
 	sendTwistMessage (linearSpeed, -0.05);
 	addLog ("forward button");
 }
 function arrowUpLeft () {
-	moveRobotFromPose (0, angularSpeed);
+	moveRobotFromPose (0, -angularSpeed);
 	sendTwistMessage (linearSpeed, 0.05);
 	addLog ("forward button");
 }
