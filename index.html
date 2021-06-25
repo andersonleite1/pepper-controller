@@ -34,10 +34,12 @@
             </svg>
           </div> -->
           <ul class="menu">
-            <li class="item"><a href="#home">Home</a></li>
+            <li class="item">
+              <a class="btn btn-info" href="./">Home</a>
+            </li>
             <li class="item">
               <div class="dropdown">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                   Settings
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -47,8 +49,14 @@
                 </ul>
               </div>
             </li>
-            <li class="item"><a href="#help">Help</a></li>
-            <li class="item"><a href="#about">About</a></li>
+            <li class="item">
+              <a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#helpModal">
+                Help
+              </a>
+            </li>
+            <li class="item">
+              <a class="btn btn-info" href="#about">About</a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -160,6 +168,46 @@
         <p id="info_upgrade">This browser doesn't support the Web Speech API. Use <a href="//www.google.com/chrome">Chrome</a> version 25 or later.</p>
       </div>
     </section>
+    <div class="modals">
+
+      <!-- Modal Help -->
+      <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="helpModalLabel">Voice commands to move the robot</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h5>Move the robot forward</h5>
+              <ul>
+                <li>- run</li>
+                <li>- go</li>
+                <li>- forward</li>
+              </ul>
+              <h5>Move the robot right</h5>
+              <ul>
+                <li>- right</li>
+                <li>- turn right</li>
+              </ul>
+              <h5>Move the robot back</h5>
+              <ul>
+                <li>- back</li>
+                <li>- go back</li>
+              </ul>
+              <h5>Move the robot left</h5>
+              <ul>
+                <li>- left</li>
+                <li>- turn left</li>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
