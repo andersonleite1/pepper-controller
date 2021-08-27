@@ -114,4 +114,4 @@ Copyright belongs to https://github.com/UbiquityRobotics, I made some code re-ad
 
 contact@ubiquityrobotics.com
 
-Readapted by: andersonleite.bsi@gmail.com
+Readapted by: andersonleite.bsi@gmail.com 
