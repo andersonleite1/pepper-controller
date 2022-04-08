@@ -630,13 +630,13 @@ function arrowDown () {
 	addLog ("back button");
 }
 function arrowRight () {
-	moveRobotFromPose (0, -angularSpeed);
-  sendTwistMessage (0, 0.05);
+	moveRobotFromPose (0, angularSpeed);
+  sendTwistMessage (0, -0.05);
 	addLog ("rotate right button");
 }
 function arrowLeft () {
-	moveRobotFromPose (0, angularSpeed);
-	sendTwistMessage (0, -0.05); // linearSpeed, angle
+	moveRobotFromPose (0,  -angularSpeed);
+	sendTwistMessage (0, 0.05); // linearSpeed, angle
 	addLog ("rotate left button");
 }
 function stopButton () {
