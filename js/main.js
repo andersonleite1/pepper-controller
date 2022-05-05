@@ -189,6 +189,28 @@ function connect() {
 		}
 	});
 }	
+
+function sendDialogflowMessage(messageTopic = '') {
+	// Create a topic and write a message in the created topic
+	listener = new ROSLIB.Topic({
+		ros : ros,
+		name : '/dialogflow',
+		messageType : 'std_msgs/String'
+	});
+
+	message = new ROSLIB.Message({
+		data : messageTopic
+	});
+
+	listener.publish(message);
+	console.log(`Topic ${listener.name} published`);
+
+	listener.subscribe(function(message) {
+		console.log(`Topic ${listener.name} subescribed, message: ${message.data}`);
+	});
+}
+
+sendDialogflowMessage();
 	
 /**  ******************************************************
  *               Voice Commands
