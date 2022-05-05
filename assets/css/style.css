@@ -182,3 +182,60 @@ form .btn {
   min-height: 100px;
 }
 
+/* chatbot */
+.section-chatbot {
+  position: fixed;
+  bottom: 3rem;
+  right: 5rem;
+}
+
+#chatbot {
+  background-color: darkgray;
+}
+
+.section-icons-chatbot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-icons-check.on {
+  height: 3.5rem
+}
+
+
+#icon-chatbot {
+  width: 5rem;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#icon-go, #icon-cancel {
+  cursor: pointer;
+  width: 3.3rem;
+  transition: 0.5s;
+}
+
+#icon-go {
+  margin-right: 1rem;
+}
+
+#icon-close {
+  width: 3.3rem;
+  margin-bottom: -0.8rem;
+  cursor: pointer;
+}
+
+#icon-chatbot.off,
+#chatbot.off,
+#icon-go.off,
+#icon-cancel.off,
+#icon-close.off {
+  display: none;
+}
+
+#icon-chatbot:hover {
+  width: 5.5rem;
+}
+
+
