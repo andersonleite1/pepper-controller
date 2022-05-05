@@ -150,7 +150,7 @@
         </div>
         <br>
       </div>
-
+     
       <div id="info" >
         <p id="info_none"><br><br></p>
         <p id="info_start">Click on the microphone and begin speaking.</p>
@@ -209,6 +209,24 @@
       </div>
     </div>
 
+     <!-- chatbot -->
+     <section class="section-chatbot">
+      <div>
+        <img id="icon-chatbot" class="" src="./assets/images/pepper-icon.png" alt="Icon chatbot">
+        <div class="section-icons-chatbot">
+          <div class="section-icons-check">
+            <img id="icon-go" class="off" src="./assets/images/accept.png" alt="Icon go">
+            <img id="icon-cancel" class="off" src="./assets/images/cancel.png" alt="Icon cancel">
+          </div>
+          <img id="icon-close" class="off" src="./assets/images/close.png" alt="Icon close chatbot">
+        </div>
+      </div>
+      <div id="chatbot" class="off">
+        <!-- add link to chatbot here -->
+      <iframe width="350" height="430" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/6eebe44c-94cd-43e7-845b-7f00c5a1fece"></iframe>
+    </div>
+  </section>
+
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="./scripts/eventemitter2.min.js"></script>
@@ -217,5 +235,61 @@
 	<script type="text/javascript" src="./scripts/clickButtons.js"></script>
 	<script type="text/javascript" src="./js/main.js"></script>
 	<script type="text/javascript" src="./js/moveRobot.js"></script>
+
+  <script>
+
+    $('#icon-chatbot').click(({target}) => {
+      $(target).addClass('off');
+      $('.section-icons-check').addClass('on');
+      $('#chatbot').removeClass('off');
+      $('#icon-go').removeClass('off');
+      $('#icon-cancel').removeClass('off');
+      $('#icon-close').removeClass('off');
+    });
+
+    $('#icon-close').click(({target}) => {
+      $(target).addClass('off');
+      $('#icon-go').addClass('off');
+      $('#icon-cancel').addClass('off');
+      $('#chatbot').addClass('off');
+      $('.section-icons-check').removeClass('on');
+      $('#icon-chatbot').removeClass('off');
+    });
+
+    const URL_API = "https://api-chatbot-pepper.herokuapp.com/webhook";
+
+    const getDataAPI = async (URL) => {
+      const response = await fetch(URL_API);
+      const data = await response.json();
+      return data;
+    }
+
+    const clearDataAPI = async (URL) => {
+      const deleteMethod = {
+        method: 'DELETE',
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        },
+      }
+
+      await fetch(URL, deleteMethod);
+    }
+
+    $('#icon-go').on('click', async function() {
+      $(this).css('transform', 'scale(1.3)')
+      const { name } = await getDataAPI(URL_API);
+      if (name) {
+        sendDialogflowMessage(name);
+        await clearDataAPI(URL_API);
+      }
+      $(this).css('transform', 'scale(1)')
+    });
+
+    $('#icon-cancel').on('click', async function() {
+      $(this).css('transform', 'scale(1.3)')
+      if (!name) await clearDataAPI(URL_API);
+      $(this).css('transform', 'scale(1)')
+    });    
+  </script>
 </body>
 </html>
