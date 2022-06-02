@@ -165,6 +165,7 @@ function connect() {
 		connectButton.style.background="#00cc00"; // green
 		say ('connected');
 		connected = true;
+    sendDialogflowMessage(messageTopic = '');
 	});
 
 	ros.on('error', function(error) {
