@@ -165,7 +165,9 @@ function connect() {
 		connectButton.style.background="#00cc00"; // green
 		say ('connected');
 		connected = true;
-    sendDialogflowMessage(messageTopic = '');
+    sendDialogflowIntent(messageTopic = '');
+    sendDialogflowText(messageTopic = '');
+    sendDialogflowUser(messageTopic = '');
 	});
 
 	ros.on('error', function(error) {
@@ -191,17 +193,20 @@ function connect() {
 	});
 }	
 
-function sendDialogflowMessage(messageTopic = '') {
+function sendDialogflowIntent(messageTopic = '') {
 	// Create a topic and write a message in the created topic
 	listener = new ROSLIB.Topic({
 		ros : ros,
-		name : '/dialogflow',
+		name : '/dialogflow/intent',
 		messageType : 'std_msgs/String'
 	});
 
 	message = new ROSLIB.Message({
-		data : messageTopic
+		data: messageTopic
 	});
+
+
+  console.log(messageTopic);
 
 	listener.publish(message);
 	console.log(`Topic ${listener.name} published`);
@@ -211,7 +216,53 @@ function sendDialogflowMessage(messageTopic = '') {
 	});
 }
 
-sendDialogflowMessage();
+function sendDialogflowText(messageTopic = '') {
+	// Create a topic and write a message in the created topic
+	listener = new ROSLIB.Topic({
+		ros : ros,
+		name : '/dialogflow/text',
+		messageType : 'std_msgs/String'
+	});
+
+	message = new ROSLIB.Message({
+		data: messageTopic
+	});
+
+
+  console.log(messageTopic);
+
+	listener.publish(message);
+	console.log(`Topic ${listener.name} published`);
+
+	listener.subscribe(function(message) {
+		console.log(`Topic ${listener.name} subescribed, message: ${message.data}`);
+	});
+}
+
+function sendDialogflowUser(messageTopic = '') {
+	// Create a topic and write a message in the created topic
+	listener = new ROSLIB.Topic({
+		ros : ros,
+		name : '/dialogflow/username',
+		messageType : 'std_msgs/String'
+	});
+
+	message = new ROSLIB.Message({
+		data: messageTopic
+	});
+
+
+  console.log(messageTopic);
+
+	listener.publish(message);
+	console.log(`Topic ${listener.name} published`);
+
+	listener.subscribe(function(message) {
+		console.log(`Topic ${listener.name} subescribed, message: ${message.data}`);
+	});
+}
+
+// sendDialogflowIntent();
 	
 /**  ******************************************************
  *               Voice Commands
