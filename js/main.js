@@ -166,7 +166,8 @@ function connect() {
 		say ('connected');
 		connected = true;
     sendDialogflowIntent(messageTopic = '');
-    sendDialogflowText(messageTopic = '');
+    sendDialogflowQueryUser(messageTopic = '');
+    sendDialogflowQueryChatbot(messageTopic = '');
     sendDialogflowUser(messageTopic = '');
 	});
 
@@ -216,11 +217,34 @@ function sendDialogflowIntent(messageTopic = '') {
 	});
 }
 
-function sendDialogflowText(messageTopic = '') {
+function sendDialogflowQueryChatbot(messageTopic = '') {
 	// Create a topic and write a message in the created topic
 	listener = new ROSLIB.Topic({
 		ros : ros,
-		name : '/dialogflow/text',
+		name : '/dialogflow/queryChatbot',
+		messageType : 'std_msgs/String'
+	});
+
+	message = new ROSLIB.Message({
+		data: messageTopic
+	});
+
+
+  console.log(messageTopic);
+
+	listener.publish(message);
+	console.log(`Topic ${listener.name} published`);
+
+	listener.subscribe(function(message) {
+		console.log(`Topic ${listener.name} subescribed, message: ${message.data}`);
+	});
+}
+
+function sendDialogflowQueryUser(messageTopic = '') {
+	// Create a topic and write a message in the created topic
+	listener = new ROSLIB.Topic({
+		ros : ros,
+		name : '/dialogflow/queryUser',
 		messageType : 'std_msgs/String'
 	});
 
