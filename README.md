@@ -6,7 +6,8 @@ If you use an Android phone, vocabulary can be downloaded, only speech recogniti
 
 The program is contained in a single web page, currently called index.html, which is loaded from a web server. The web server (usually) runs on the robot. Thus, the program can be loaded whenever the robot is present.
 
-![Simulation Pepper robot](https://github.com/andersonleite1/pepper-controller/blob/main/assets/images/simulation-pepper.gif)
+<!-- ![Simulation Pepper robot](https://github.com/andersonleite1/pepper-controller/blob/main/assets/images/simulation-pepper.gif) -->
+<img src="https://github.com/andersonleite1/pepper-controller/blob/main/assets/images/simulation-pepper.gif" alt="Simulation Pepper robot"/>
 
 ## Usage Follow these instructions to install and execute Pepper Robot Controller.
 
